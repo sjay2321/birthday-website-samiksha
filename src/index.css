@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Caveat:wght@500;600;700&display=swap');
+@import "tailwindcss";
+
+:root {
+  --bg-deep: #150c20;
+  --bg-mid: #241536;
+  --bg-mid-2: #2f1c46;
+  --gold: #f0b94d;
+  --gold-soft: #f6d38a;
+  --coral: #ff7a93;
+  --coral-soft: #ffb0c1;
+  --lavender: #b79ce8;
+  --cream: #f7ecd9;
+  --cream-dim: #cbbfd9;
+
+  --font-display: 'Fraunces', serif;
+  --font-body: 'Plus Jakarta Sans', sans-serif;
+  --font-hand: 'Caveat', cursive;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg-deep);
+  color: var(--cream);
+  overflow: hidden;
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior: none;
+}
+
+@supports (height: 100dvh) {
+  #root {
+    height: 100dvh;
+  }
+}
+
+::selection {
+  background: var(--coral);
+  color: var(--bg-deep);
+}
+
+.font-display { font-family: var(--font-display); }
+.font-hand { font-family: var(--font-hand); }
+
+.thin-scroll::-webkit-scrollbar { width: 6px; }
+.thin-scroll::-webkit-scrollbar-track { background: transparent; }
+.thin-scroll::-webkit-scrollbar-thumb { background: rgba(240,185,77,0.35); border-radius: 4px; }
+
+.text-glow {
+  text-shadow: 0 0 30px rgba(240, 185, 77, 0.35);
+}
+
+.grain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 60;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+button {
+  font-family: inherit;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+
+/* Personalization polish: keyboard focus, small screens and safe-area spacing */
+button:focus-visible, [role="button"]:focus-visible {
+  outline: 2px solid var(--gold-soft);
+  outline-offset: 4px;
+}
+@media (max-width: 640px) {
+  html, body, #root { min-height: 100%; }
+  .thin-scroll { overscroll-behavior: contain; }
+}
+@media (max-height: 700px) {
+  .chapter-scroll { overflow-y: auto; justify-content: flex-start; padding-top: 3rem; padding-bottom: 4rem; }
+}
